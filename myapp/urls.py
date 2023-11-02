@@ -1,6 +1,12 @@
 from django.urls import path
 from .views import *
 
+#for registering viewset we use Router
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register(r'todo-view-set', TodoViewSet, basename='todo')
+
+
 urlpatterns = [
     path('',index,name='index'),
     path('post_todo/', post_todo, name='post_todo'),
@@ -10,3 +16,5 @@ urlpatterns = [
 
     path('todo/', TodoView.as_view()),
 ]
+
+urlpatterns+=router.urls
